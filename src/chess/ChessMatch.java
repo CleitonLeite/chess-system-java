@@ -1,7 +1,6 @@
 package chess;
 
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidParameterException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +27,6 @@ public class ChessMatch {
 	
 	private List<Piece> piecesOnTheBoard = new ArrayList<>();
 	private List<Piece> capturedPieces = new ArrayList<>();
-	private Pawn movePiece;
-	
 	public ChessMatch() {
 		board = new Board(8, 8);
 		turn = 1;
@@ -124,8 +121,8 @@ public class ChessMatch {
 		if (promoted == null) {
 			throw new IllegalStateException("There is no piece to be promoted");
 		}
-		if(!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
-			throw new InvalidParameterException("Invalid type for promotion");
+		if (!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
+			return promoted;
 		}
 		
 		Position pos = promoted.getChessPosition().toPosition();
